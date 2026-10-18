@@ -25,7 +25,17 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build
-        run: ./gradlew build --stacktrace
+        run: |
+          set +e
+          ./gradlew build --stacktrace > build.log 2>&1
+          code=$?
+          cat build.log
+          if [ "$code" -ne 0 ]; then
+            # scoate erorile de compilare ca adnotare, ca sa se vada direct in Actions
+            MSG=$(grep -E "error:|\.java:[0-9]+|symbol:|location:|What went wrong|Execution failed|Caused by" -A1 build.log | head -80 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+            echo "::error title=Gradle build failed::${MSG}"
+          fi
+          exit $code
 
       - name: Upload jar
         uses: actions/upload-artifact@v4
