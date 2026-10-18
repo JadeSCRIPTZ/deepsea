@@ -132,6 +132,11 @@ Fără mixin-uri.
 
 ## Changelog
 
+### 1.1.2
+- **fix real pentru „nu se deschide GUI"**: ecranul se deschide acum din `END_CLIENT_TICK`
+  (prin flag), exact ca GMSea — nu mai direct din callback-ul comenzii, ca să nu fie
+  suprascris de închiderea ecranului de chat.
+
 ### 1.1.1
 - deschiderea GUI-ului este amânată pe tick-ul următor (posibil fix pentru „nu se deschide GUI")
 - log detaliat (added/init/extractRenderState/removed) ca să putem depana rapid dacă mai apare

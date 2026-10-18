@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,8 @@ import ro.deepsea.command.DeepSeaCommand;
 import ro.deepsea.config.DeepSeaConfig;
 import ro.deepsea.data.SeaCreature;
 import ro.deepsea.data.SeaCreatureDatabase;
+import ro.deepsea.gui.DeepSeaScreen;
+import ro.deepsea.gui.HudEditScreen;
 import ro.deepsea.hud.AlertHud;
 import ro.deepsea.logic.AlertManager;
 
@@ -32,8 +35,24 @@ public final class DeepSea implements ClientModInitializer {
     private static long lastDoubleHookMs = 0L;
     private static boolean announced = false;
 
+    /** Ca GMSea: comanda seteaza un flag, iar ecranul se deschide la END_CLIENT_TICK. */
+    private static final int SCREEN_CONFIG = 0;
+    private static final int SCREEN_EDIT = 1;
+    private static int openScreenIn = -1;
+    private static int openScreenKind = SCREEN_CONFIG;
+
     public static DeepSeaConfig config() {
         return config;
+    }
+
+    public static void openConfigScreen() {
+        openScreenIn = 1;
+        openScreenKind = SCREEN_CONFIG;
+    }
+
+    public static void openEditScreen() {
+        openScreenIn = 1;
+        openScreenKind = SCREEN_EDIT;
     }
 
     @Override
@@ -46,6 +65,15 @@ public final class DeepSea implements ClientModInitializer {
         HudElementRegistry.addLast(Identifier.fromNamespaceAndPath(MOD_ID, "alerts"), new AlertHud());
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             AlertManager.tick();
+
+            if (openScreenIn > 0) {
+                openScreenIn--;
+                if (openScreenIn == 0) {
+                    openScreenIn = -1;
+                    openScreen();
+                }
+            }
+
             if (!announced && client.player != null) {
                 announced = true;
                 client.player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
@@ -69,6 +97,26 @@ public final class DeepSea implements ClientModInitializer {
             LOGGER.info("Registering /dpsea command");
             DeepSeaCommand.register(dispatcher);
         });
+    }
+
+    private static void openScreen() {
+        try {
+            Minecraft minecraft = Minecraft.getInstance();
+            if (openScreenKind == SCREEN_EDIT) {
+                minecraft.setScreen(new HudEditScreen(null));
+            } else {
+                minecraft.setScreen(new DeepSeaScreen());
+            }
+            LOGGER.info("DeepSea screen opened, current screen={}", minecraft.screen);
+        } catch (Throwable throwable) {
+            LOGGER.error("Could not open the DeepSea screen", throwable);
+            Minecraft minecraft = Minecraft.getInstance();
+            if (minecraft.player != null) {
+                minecraft.player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                    "§c[DeepSea] Eroare la GUI: " + throwable
+                ));
+            }
+        }
     }
 
     /**
