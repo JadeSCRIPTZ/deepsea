@@ -39,18 +39,22 @@ Făcut pentru **Minecraft 26.1.2** (Fabric, Java 25).
 
 ## GUI (`/dpsea`)
 
-Fiecare rând = o creatură. Butoane, de la stânga la dreapta:
+Trei zone: **categorii** (stânga), **lista creaturilor** (mijloc) și **detaliile creaturii selectate** (dreapta).
 
-| Buton | Înseamnă |
+| Zonă | Ce faci |
 |---|---|
-| `[ON] Nume` | click = pornește/oprește alerta |
-| `#FFAA00` | click = trece la următoarea culoare din paletă |
-| `6.0s` | durata (mod `TIM`, sau fallback dacă mobul nu e găsit) |
-| `+1.5s` | cât rămâne pe ecran **după** ce moare mobul |
-| `MOB` / `TIM` | modul: până moare mobul / doar pe timp |
-| `N` / `-` | arată sau nu numele creaturii |
+| Categorii | Apă, Hotspot apă, Lavă, Hotspot lavă, Mine & Cristale, Backwater Bayou, Lotus Atoll, Moonglade Marsh, Torrhus Canyon, Spooky, Winter Island, Rechini, Diverse. Lângă fiecare vezi câte sunt active (`3/11`). |
+| Listă | click = selectezi creatura · click pe `ON/OFF` sau dublu-click = pornești/oprești · rotița mouse-ului sau bara din dreapta = scroll. Cele mai rare sunt primele. |
+| Căutare (sus) | caută în **toate** categoriile după nume. |
+| Culoare | scrii direct **hex** (`#FFAA00` sau `FFAA00`, se aplică imediat când are 6 cifre; merge și lipit cu Ctrl+V), sau click pe paleta rapidă. `Reset` revine la culoarea implicită după raritate. |
+| Mod | `pana moare` = rămâne cât trăiește mobul · `timp fix` = rămâne exact `Durata`. |
+| `Rezerva` / `Durata` | în modul „până moare” e folosită doar dacă mobul nu e găsit; în „timp fix” e durata exactă. |
+| `Dupa moarte` | cât mai stă pătratul după ce moare ultimul mob (doar modul „până moare”). |
+| Nume pe HUD | arată sau nu numele lângă pătrat. |
 
-Sus: căutare + paginare. Jos: `Toate ON`, `Toate OFF`, `Muta HUD`, `Test`, `Gata`.
+Jos: `Toate ON` / `Toate OFF` (se aplică pe lista afișată: categoria aleasă sau rezultatele căutării), `Muta HUD`, `Test`, `Gata`.
+
+Pătratul **nu mai are fade**: rămâne la opacitate maximă până expiră, apoi dispare.
 
 ## Cum știe când a murit mobul
 
@@ -131,6 +135,14 @@ Jar-ul apare în `build/libs/`.
 Fără mixin-uri.
 
 ## Changelog
+
+### 1.2.0
+- GUI nou: categorii pe zone, listă cu scroll, panou de detalii pe creatură
+- culoare prin **cod hex** (+ paletă rapidă și `Reset`)
+- scos fade-ul pătratului când moare mobul
+- fix: în modul `TIM`, a doua captură a aceleiași creaturi repornește cronometrul
+- fix: alertele se șterg la deconectare
+- build automat pe GitHub Actions + Gradle wrapper
 
 ### 1.1.2
 - **fix real pentru „nu se deschide GUI"**: ecranul se deschide acum din `END_CLIENT_TICK`

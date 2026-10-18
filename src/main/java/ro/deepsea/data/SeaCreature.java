@@ -22,4 +22,39 @@ public record SeaCreature(String name, String message, String rarity, int xp, St
             default -> 0xFFB0B0B0;
         };
     }
+
+    /** 0 = COMMON ... 5 = MYTHIC (pentru sortare). */
+    public int rarityRank() {
+        return switch (rarity) {
+            case "UNCOMMON" -> 1;
+            case "RARE" -> 2;
+            case "EPIC" -> 3;
+            case "LEGENDARY" -> 4;
+            case "MYTHIC" -> 5;
+            default -> 0;
+        };
+    }
+
+    /** Culoarea numelui in GUI (aleasa sa se citeasca bine pe fundal inchis). */
+    public int rarityColor() {
+        return switch (rarity) {
+            case "UNCOMMON" -> 0xFF55FF55;
+            case "RARE" -> 0xFF6F8FFF;
+            case "EPIC" -> 0xFFB65CFF;
+            case "LEGENDARY" -> 0xFFFFAA00;
+            case "MYTHIC" -> 0xFFFF66FF;
+            default -> 0xFFE0E0E0;
+        };
+    }
+
+    public String rarityLabel() {
+        return switch (rarity) {
+            case "UNCOMMON" -> "Uncommon";
+            case "RARE" -> "Rare";
+            case "EPIC" -> "Epic";
+            case "LEGENDARY" -> "Legendary";
+            case "MYTHIC" -> "Mythic";
+            default -> "Common";
+        };
+    }
 }

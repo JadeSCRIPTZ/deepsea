@@ -17,8 +17,6 @@ import java.util.List;
  */
 public final class AlertHud implements HudElement {
 
-    private static final int FADE_MS = 600;
-
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -32,23 +30,20 @@ public final class AlertHud implements HudElement {
         }
 
         DeepSeaConfig config = DeepSea.config();
-        long now = System.currentTimeMillis();
 
         int x = config.x;
         int y = config.y;
         int size = Math.max(4, config.boxSize);
 
         for (ActiveAlert alert : alerts) {
-            long remaining = alert.expiresAt() - now;
-            int alpha = remaining < FADE_MS ? (int) Math.max(0, remaining * 255L / FADE_MS) : 255;
-            int argb = (alpha << 24) | (alert.color & 0xFFFFFF);
+            // fara fade: patratul ramane la opacitate maxima pana expira, apoi dispare
+            int argb = 0xFF000000 | (alert.color & 0xFFFFFF);
 
             drawSquare(graphics, x, y, size, argb);
 
             if (alert.label) {
-                int textColor = (Math.max(alpha, 70) << 24) | (alert.color & 0xFFFFFF);
                 int textY = y + (size - 8) / 2;
-                graphics.text(minecraft.font, alert.creature.name(), x + size + 6, textY, textColor, config.textShadow);
+                graphics.text(minecraft.font, alert.creature.name(), x + size + 6, textY, argb, config.textShadow);
             }
 
             y += size + config.gap;

@@ -63,15 +63,4 @@ public final class ActiveAlert {
         // nu am gasit mobul (poate a murit instant sau e prea departe): fallback pe timp
         return now < findDeadline + durationMs;
     }
-
-    /** Pentru fade-out: cand expira. */
-    public long expiresAt() {
-        if (!untilDead) {
-            return startedAt + durationMs;
-        }
-        if (foundAny && allDeadAt >= 0) {
-            return allDeadAt + afterDeathMs;
-        }
-        return findDeadline + durationMs;
-    }
 }
