@@ -84,6 +84,8 @@ public final class DeepSeaScreen extends Screen {
     private int listX, listW, rowsTop, visibleRows;
     private int detX, detW;
     private int colorY, paletteY, durY, afterY, paletteSize;
+    /** Inaltimea butoanelor din panoul de detalii (mai mica pe ecrane mici). */
+    private int btnH = 18;
 
     // ---- widgeturi ----
     private EditBox searchBox;
@@ -121,6 +123,9 @@ public final class DeepSeaScreen extends Screen {
         this.addRenderableWidget(this.searchBox);
 
         // --- panoul de detalii ---
+        // pe ecrane mici (GUI scale mare) strangem randurile ca sa incapa tot panoul
+        int step = (bodyBottom - bodyTop) >= 175 ? 21 : 18;
+        this.btnH = step - 3;
         int y = bodyTop + 26;
 
         this.toggleButton = this.addRenderableWidget(Button.builder(Component.empty(), button -> {
@@ -130,12 +135,12 @@ public final class DeepSeaScreen extends Screen {
                 save();
                 updateDetail();
             }
-        }).bounds(detX, y, detW, 18).build());
-        y += 21;
+        }).bounds(detX, y, detW, btnH).build());
+        y += step;
 
         colorY = y;
         int hexW = detW - 22 - 40 - 2;
-        this.hexBox = new EditBox(this.font, detX + 22, y, hexW, 18, Component.literal("Culoare hex"));
+        this.hexBox = new EditBox(this.font, detX + 22, y, hexW, btnH, Component.literal("Culoare hex"));
         this.hexBox.setMaxLength(7);
         this.hexBox.setResponder(this::onHexChanged);
         this.addRenderableWidget(this.hexBox);
@@ -143,8 +148,8 @@ public final class DeepSeaScreen extends Screen {
             if (selected != null) {
                 applyColor(selected.defaultColor() & 0xFFFFFF);
             }
-        }).bounds(detX + detW - 40, y, 40, 18).build());
-        y += 21;
+        }).bounds(detX + detW - 40, y, 40, btnH).build());
+        y += step;
 
         paletteY = y;
         paletteSize = Math.max(6, (detW - (PALETTE.length - 1)) / PALETTE.length);
@@ -156,22 +161,22 @@ public final class DeepSeaScreen extends Screen {
                 save();
                 updateDetail();
             }
-        }).bounds(detX, y, detW, 18).build());
-        y += 21;
+        }).bounds(detX, y, detW, btnH).build());
+        y += step;
 
         durY = y;
         this.durMinus = this.addRenderableWidget(Button.builder(Component.literal("-"), button -> stepDuration(-1))
-            .bounds(detX + detW - 68, y, 18, 18).build());
+            .bounds(detX + detW - 68, y, 18, btnH).build());
         this.durPlus = this.addRenderableWidget(Button.builder(Component.literal("+"), button -> stepDuration(1))
-            .bounds(detX + detW - 18, y, 18, 18).build());
-        y += 21;
+            .bounds(detX + detW - 18, y, 18, btnH).build());
+        y += step;
 
         afterY = y;
         this.afterMinus = this.addRenderableWidget(Button.builder(Component.literal("-"), button -> stepAfter(-1))
-            .bounds(detX + detW - 68, y, 18, 18).build());
+            .bounds(detX + detW - 68, y, 18, btnH).build());
         this.afterPlus = this.addRenderableWidget(Button.builder(Component.literal("+"), button -> stepAfter(1))
-            .bounds(detX + detW - 18, y, 18, 18).build());
-        y += 21;
+            .bounds(detX + detW - 18, y, 18, btnH).build());
+        y += step;
 
         this.labelButton = this.addRenderableWidget(Button.builder(Component.empty(), button -> {
             if (selected != null) {
@@ -180,7 +185,7 @@ public final class DeepSeaScreen extends Screen {
                 save();
                 updateDetail();
             }
-        }).bounds(detX, y, detW, 18).build());
+        }).bounds(detX, y, detW, btnH).build());
 
         // --- bara de jos ---
         int by = py + ph - BOTTOM_H + 3;
@@ -576,7 +581,7 @@ public final class DeepSeaScreen extends Screen {
         g.text(this.font, selected.rarityLabel() + " - " + selected.xp() + " XP", detX, bodyTop + 15, C_MUTED, false);
 
         // culoarea curenta + paleta rapida
-        swatch(g, detX + 1, colorY + 1, 16, s.color & 0xFFFFFF);
+        swatch(g, detX + 1, colorY + 1, btnH - 2, s.color & 0xFFFFFF);
         for (int i = 0; i < PALETTE.length; i++) {
             int x = detX + i * (paletteSize + 1);
             swatch(g, x, paletteY, paletteSize, PALETTE[i]);
@@ -587,17 +592,17 @@ public final class DeepSeaScreen extends Screen {
 
         // durata / dupa moarte
         String durationLabel = s.isUntilDead() ? "Rezerva" : "Durata";
-        g.text(this.font, durationLabel, detX, durY + 5, C_TEXT, false);
+        g.text(this.font, durationLabel, detX, durY + (btnH - 8) / 2, C_TEXT, false);
         drawValue(g, seconds(s.durationMs), durY, true);
 
-        g.text(this.font, "Dupa moarte", detX, afterY + 5, s.isUntilDead() ? C_TEXT : 0xFF5A6070, false);
+        g.text(this.font, "Dupa moarte", detX, afterY + (btnH - 8) / 2, s.isUntilDead() ? C_TEXT : 0xFF5A6070, false);
         drawValue(g, seconds(s.afterDeathMs), afterY, s.isUntilDead());
     }
 
     private void drawValue(GuiGraphicsExtractor g, String text, int y, boolean active) {
         int areaX = detX + detW - 68 + 18;
         int areaW = 32;
-        g.text(this.font, text, areaX + (areaW - this.font.width(text)) / 2, y + 5,
+        g.text(this.font, text, areaX + (areaW - this.font.width(text)) / 2, y + (btnH - 8) / 2,
             active ? 0xFFFFFFFF : 0xFF5A6070, false);
     }
 
