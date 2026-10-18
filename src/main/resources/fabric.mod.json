@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "deepsea",
+	"version": "${version}",
+	"name": "DeepSea",
+	"description": "Alertă vizuală pentru Sea Creature-urile prinse la pescuit în Hypixel SkyBlock: pătrat colorat + nume, configurabil per creatură.",
+	"authors": [
+		"DeepSea"
+	],
+	"contact": {
+		"homepage": "https://github.com/",
+		"sources": "https://github.com/"
+	},
+	"license": "MIT",
+	"icon": "assets/deepsea/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"ro.deepsea.DeepSea"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.17.0",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

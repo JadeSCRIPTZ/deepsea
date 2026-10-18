@@ -1,0 +1,627 @@
+{
+ "creatures": [
+  {
+   "name": "Bloated Mithril Grubber",
+   "message": "A leech of the mines surfaces... you've caught a Bloated Mithril Grubber.",
+   "rarity": "UNCOMMON",
+   "xp": 245,
+   "island": "ABANDONED_QUARRY"
+  },
+  {
+   "name": "Large Mithril Grubber",
+   "message": "A leech of the mines surfaces... you've caught a Large Mithril Grubber.",
+   "rarity": "UNCOMMON",
+   "xp": 245,
+   "island": "ABANDONED_QUARRY"
+  },
+  {
+   "name": "Medium Mithril Grubber",
+   "message": "A leech of the mines surfaces... you've caught a Medium Mithril Grubber.",
+   "rarity": "UNCOMMON",
+   "xp": 245,
+   "island": "ABANDONED_QUARRY"
+  },
+  {
+   "name": "Small Mithril Grubber",
+   "message": "A leech of the mines surfaces... you've caught a Mithril Grubber.",
+   "rarity": "UNCOMMON",
+   "xp": 245,
+   "island": "ABANDONED_QUARRY"
+  },
+  {
+   "name": "Alligator",
+   "message": "A long snout breaks the surface of the water. It's an Alligator!",
+   "rarity": "LEGENDARY",
+   "xp": 1250,
+   "island": "BACKWATER_BAYOU"
+  },
+  {
+   "name": "Banshee",
+   "message": "The desolate wail of a Banshee breaks the silence.",
+   "rarity": "RARE",
+   "xp": 1000,
+   "island": "BACKWATER_BAYOU"
+  },
+  {
+   "name": "Bayou Sludge",
+   "message": "A swampy mass of slime emerges, the Bayou Sludge!",
+   "rarity": "EPIC",
+   "xp": 1000,
+   "island": "BACKWATER_BAYOU"
+  },
+  {
+   "name": "Dumpster Diver",
+   "message": "A Dumpster Diver has emerged from the swamp!",
+   "rarity": "UNCOMMON",
+   "xp": 250,
+   "island": "BACKWATER_BAYOU"
+  },
+  {
+   "name": "Titanoboa",
+   "message": "A massive Titanoboa surfaces. Its body stretches as far as the eye can see.",
+   "rarity": "MYTHIC",
+   "xp": 4500,
+   "island": "BACKWATER_BAYOU"
+  },
+  {
+   "name": "Trash Gobbler",
+   "message": "The Trash Gobbler is hungry for you!",
+   "rarity": "COMMON",
+   "xp": 175,
+   "island": "BACKWATER_BAYOU"
+  },
+  {
+   "name": "Carrot King",
+   "message": "Is this even a fish? It's the Carrot King!",
+   "rarity": "RARE",
+   "xp": 810,
+   "island": "CARROT"
+  },
+  {
+   "name": "Agarimoo",
+   "message": "Your Chumcap Bucket trembles, it's an Agarimoo.",
+   "rarity": "RARE",
+   "xp": 80,
+   "island": "CHUMCAP"
+  },
+  {
+   "name": "Poisoned Water Worm",
+   "message": "A Poisoned Water Worm surfaces!",
+   "rarity": "RARE",
+   "xp": 270,
+   "island": "GOBLIN_BURROWS"
+  },
+  {
+   "name": "Water Worm",
+   "message": "A Water Worm surfaces!",
+   "rarity": "RARE",
+   "xp": 240,
+   "island": "GOBLIN_BURROWS"
+  },
+  {
+   "name": "Fire Eel",
+   "message": "A Fire Eel slithers out from the depths.",
+   "rarity": "RARE",
+   "xp": 2200,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Lava Flame",
+   "message": "A Lava Flame flies out from beneath the lava.",
+   "rarity": "RARE",
+   "xp": 2100,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Lava Leech",
+   "message": "A small but fearsome Lava Leech emerges.",
+   "rarity": "RARE",
+   "xp": 1400,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Lord Jawbus",
+   "message": "You have angered a legendary creature... Lord Jawbus has arrived.",
+   "rarity": "MYTHIC",
+   "xp": 40000,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Magma Slug",
+   "message": "From beneath the lava appears a Magma Slug.",
+   "rarity": "RARE",
+   "xp": 730,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Moogma",
+   "message": "You hear a faint Moo from the lava... A Moogma appears.",
+   "rarity": "RARE",
+   "xp": 950,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Pyroclastic Worm",
+   "message": "You feel the heat radiating as a Pyroclastic Worm surfaces.",
+   "rarity": "RARE",
+   "xp": 1100,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Taurus",
+   "message": "Taurus and his steed emerge.",
+   "rarity": "RARE",
+   "xp": 4300,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Thunder",
+   "message": "You hear a massive rumble as Thunder emerges.",
+   "rarity": "MYTHIC",
+   "xp": 12000,
+   "island": "LAVA_CRIMSON_ISLE"
+  },
+  {
+   "name": "Fiery Scuttler",
+   "message": "A Fiery Scuttler inconspicuously waddles up to you, friends in tow.",
+   "rarity": "LEGENDARY",
+   "xp": 15000,
+   "island": "LAVA_HOTSPOT"
+  },
+  {
+   "name": "Fireproof Witch",
+   "message": "Trouble's brewing, it's a Fireproof Witch!",
+   "rarity": "RARE",
+   "xp": 1250,
+   "island": "LAVA_HOTSPOT"
+  },
+  {
+   "name": "Fried Chicken",
+   "message": "Smells of burning. Must be a Fried Chicken.",
+   "rarity": "COMMON",
+   "xp": 400,
+   "island": "LAVA_HOTSPOT"
+  },
+  {
+   "name": "Magma Pillar",
+   "message": "A Magma Pillar rises from the lava.",
+   "rarity": "EPIC",
+   "xp": 0,
+   "island": "LAVA_HOTSPOT"
+  },
+  {
+   "name": "Ragnarok",
+   "message": "The sky darkens and the air thickens. The end times are upon us: Ragnarok is here.",
+   "rarity": "MYTHIC",
+   "xp": 20000,
+   "island": "LAVA_HOTSPOT"
+  },
+  {
+   "name": "Volcanic Snail",
+   "message": "You feel a burning sensation as you reel in a Volcanic Snail!",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "LAVA_HOTSPOT"
+  },
+  {
+   "name": "Flaming Worm",
+   "message": "A Flaming Worm surfaces from the depths!",
+   "rarity": "RARE",
+   "xp": 240,
+   "island": "LAVA_PRECURSOR"
+  },
+  {
+   "name": "Atoll Croaker",
+   "message": "An inquisitive Atoll Croaker takes the bait!",
+   "rarity": "COMMON",
+   "xp": 0,
+   "island": "LOTUS_ATOLL"
+  },
+  {
+   "name": "Drowned Captain",
+   "message": "A Drowned Captain takes hold of your bobber!",
+   "rarity": "EPIC",
+   "xp": 0,
+   "island": "LOTUS_ATOLL"
+  },
+  {
+   "name": "Frog Prince",
+   "message": "Bow down before the Frog Prince... or pay the hefty price!",
+   "rarity": "MYTHIC",
+   "xp": 0,
+   "island": "LOTUS_ATOLL"
+  },
+  {
+   "name": "Lotus Guardian",
+   "message": "A Lotus Guardian emerges, ready to protect the Atoll.",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "LOTUS_ATOLL"
+  },
+  {
+   "name": "Puddle Jumper",
+   "message": "A Puddle Jumper is preparing for liftoff—cast your rod into it and hold on tight!",
+   "rarity": "LEGENDARY",
+   "xp": 0,
+   "island": "LOTUS_ATOLL"
+  },
+  {
+   "name": "gorF",
+   "message": "What even is that?! A... gorF?",
+   "rarity": "RARE",
+   "xp": 0,
+   "island": "LOTUS_ATOLL"
+  },
+  {
+   "name": "Lava Blaze",
+   "message": "A Lava Blaze has surfaced from the depths!",
+   "rarity": "RARE",
+   "xp": 548,
+   "island": "MAGMA_FIELDS"
+  },
+  {
+   "name": "Lava Pigman",
+   "message": "A Lava Pigman arose from the depths!",
+   "rarity": "RARE",
+   "xp": 568,
+   "island": "MAGMA_FIELDS"
+  },
+  {
+   "name": "Bogged",
+   "message": "You've hooked a Bogged!",
+   "rarity": "COMMON",
+   "xp": 225,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "Ent",
+   "message": "You've hooked an Ent, as ancient as the forest itself.",
+   "rarity": "EPIC",
+   "xp": 0,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "Nessie",
+   "message": "You've caused a disturbance in the loch. Could it be... Nessie?",
+   "rarity": "MYTHIC",
+   "xp": 7500,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "Stridersurfer",
+   "message": "You caught a Stridersurfer.",
+   "rarity": "RARE",
+   "xp": 0,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "Tadgang",
+   "message": "A gang of Liltads!",
+   "rarity": "RARE",
+   "xp": 0,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "The Loch Emperor",
+   "message": "The Loch Emperor arises from the depths.",
+   "rarity": "LEGENDARY",
+   "xp": 3375,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "Wetwing",
+   "message": "Look! A Wetwing emerges!",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "MOONGLADE_MARSH"
+  },
+  {
+   "name": "Oasis Rabbit",
+   "message": "An Oasis Rabbit appears from the water.",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "OASIS"
+  },
+  {
+   "name": "Oasis Sheep",
+   "message": "An Oasis Sheep appears from the water.",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "OASIS"
+  },
+  {
+   "name": "Night Squid",
+   "message": "Pitch darkness reveals a Night Squid.",
+   "rarity": "COMMON",
+   "xp": 270,
+   "island": "PARK"
+  },
+  {
+   "name": "Plhlegblast",
+   "message": "WOAH! A Plhlegblast appeared.",
+   "rarity": "MYTHIC",
+   "xp": 5000,
+   "island": "PLHLEGBLAST"
+  },
+  {
+   "name": "Blue Shark",
+   "message": "You spot a fin as blue as the water it came from, it's a Blue Shark.",
+   "rarity": "UNCOMMON",
+   "xp": 810,
+   "island": "SHARK"
+  },
+  {
+   "name": "Great White Shark",
+   "message": "Hide no longer, a Great White Shark has tracked your scent and thirsts for your blood!",
+   "rarity": "LEGENDARY",
+   "xp": 2025,
+   "island": "SHARK"
+  },
+  {
+   "name": "Nurse Shark",
+   "message": "A tiny fin emerges from the water, you've caught a Nurse Shark.",
+   "rarity": "COMMON",
+   "xp": 405,
+   "island": "SHARK"
+  },
+  {
+   "name": "Tiger Shark",
+   "message": "A striped beast bounds from the depths, the wild Tiger Shark!",
+   "rarity": "EPIC",
+   "xp": 1013,
+   "island": "SHARK"
+  },
+  {
+   "name": "Grim Reaper",
+   "message": "This can't be! The manifestation of death himself!",
+   "rarity": "LEGENDARY",
+   "xp": 3950,
+   "island": "SPOOKY"
+  },
+  {
+   "name": "Jumpin' Jack",
+   "message": "Watch out! It's Jumpin' Jack.",
+   "rarity": "COMMON",
+   "xp": 210,
+   "island": "SPOOKY"
+  },
+  {
+   "name": "Nightmare",
+   "message": "You hear trotting from beneath the waves, you caught a Nightmare.",
+   "rarity": "RARE",
+   "xp": 820,
+   "island": "SPOOKY"
+  },
+  {
+   "name": "Phantom Fisher",
+   "message": "The spirit of a long lost Phantom Fisher has come to haunt you.",
+   "rarity": "LEGENDARY",
+   "xp": 2525,
+   "island": "SPOOKY"
+  },
+  {
+   "name": "Scarecrow",
+   "message": "Phew! It's only a Scarecrow.",
+   "rarity": "COMMON",
+   "xp": 420,
+   "island": "SPOOKY"
+  },
+  {
+   "name": "Werewolf",
+   "message": "It must be a full moon, a Werewolf appears.",
+   "rarity": "EPIC",
+   "xp": 1235,
+   "island": "SPOOKY"
+  },
+  {
+   "name": "Brineling",
+   "message": "A Brineling interrupts you with a stream of bubbles!",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "TORRHUS_CANYON"
+  },
+  {
+   "name": "Giant Isopod",
+   "message": "A Giant Isopod was dredged up from the depths!",
+   "rarity": "MYTHIC",
+   "xp": 0,
+   "island": "TORRHUS_CANYON"
+  },
+  {
+   "name": "Haggard",
+   "message": "A Haggard stumbles to the shore, ready for a fight!",
+   "rarity": "COMMON",
+   "xp": 0,
+   "island": "TORRHUS_CANYON"
+  },
+  {
+   "name": "Silkbreeze",
+   "message": "Something zips through the air - it's a Silkbreeze!",
+   "rarity": "LEGENDARY",
+   "xp": 0,
+   "island": "TORRHUS_CANYON"
+  },
+  {
+   "name": "Sprawl",
+   "message": "A Sprawl emerges from the blue, and it's looking for you!",
+   "rarity": "RARE",
+   "xp": 0,
+   "island": "TORRHUS_CANYON"
+  },
+  {
+   "name": "Torrid",
+   "message": "The laughter of a Torrid echoes through the air.",
+   "rarity": "EPIC",
+   "xp": 0,
+   "island": "TORRHUS_CANYON"
+  },
+  {
+   "name": "Catfish",
+   "message": "Huh? A Catfish!",
+   "rarity": "RARE",
+   "xp": 405,
+   "island": "WATER"
+  },
+  {
+   "name": "Deep Sea Protector",
+   "message": "You have awoken the Deep Sea Protector, prepare for a battle!",
+   "rarity": "EPIC",
+   "xp": 2721,
+   "island": "WATER"
+  },
+  {
+   "name": "Guardian Defender",
+   "message": "You've discovered a Guardian Defender of the sea.",
+   "rarity": "EPIC",
+   "xp": 1013,
+   "island": "WATER"
+  },
+  {
+   "name": "Rider of the Deep",
+   "message": "The Rider of the Deep has emerged.",
+   "rarity": "UNCOMMON",
+   "xp": 270,
+   "island": "WATER"
+  },
+  {
+   "name": "Sea Archer",
+   "message": "You reeled in a Sea Archer.",
+   "rarity": "UNCOMMON",
+   "xp": 169,
+   "island": "WATER"
+  },
+  {
+   "name": "Sea Guardian",
+   "message": "You stumbled upon a Sea Guardian.",
+   "rarity": "COMMON",
+   "xp": 101,
+   "island": "WATER"
+  },
+  {
+   "name": "Sea Leech",
+   "message": "Gross! A Sea Leech!",
+   "rarity": "RARE",
+   "xp": 675,
+   "island": "WATER"
+  },
+  {
+   "name": "Sea Walker",
+   "message": "You caught a Sea Walker.",
+   "rarity": "COMMON",
+   "xp": 68,
+   "island": "WATER"
+  },
+  {
+   "name": "Sea Witch",
+   "message": "It looks like you've disrupted the Sea Witch's brewing session. Watch out, she's furious!",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "WATER"
+  },
+  {
+   "name": "Squid",
+   "message": "A Squid appeared.",
+   "rarity": "COMMON",
+   "xp": 41,
+   "island": "WATER"
+  },
+  {
+   "name": "Water Hydra",
+   "message": "The Water Hydra has come to test your strength.",
+   "rarity": "LEGENDARY",
+   "xp": 4050,
+   "island": "WATER"
+  },
+  {
+   "name": "Abyssal Miner",
+   "message": "An Abyssal Miner breaks out of the water!",
+   "rarity": "LEGENDARY",
+   "xp": 770,
+   "island": "WATER_CRYSTAL_HOLLOWS"
+  },
+  {
+   "name": "Blue Ringed Octopus",
+   "message": "A garish set of tentacles arise. It's a Blue Ringed Octopus!",
+   "rarity": "LEGENDARY",
+   "xp": 5000,
+   "island": "WATER_HOTSPOT"
+  },
+  {
+   "name": "Frog Man",
+   "message": "Is it a frog? Is it a man? Well, yes, sorta, IT'S FROG MAN!!!!!!",
+   "rarity": "COMMON",
+   "xp": 200,
+   "island": "WATER_HOTSPOT"
+  },
+  {
+   "name": "Inkling",
+   "message": "You get an inkling that you've caught... an Inkling!",
+   "rarity": "UNCOMMON",
+   "xp": 0,
+   "island": "WATER_HOTSPOT"
+  },
+  {
+   "name": "Manta Ray",
+   "message": "A majestic creature rises from the water. It's a Manta Ray.",
+   "rarity": "EPIC",
+   "xp": 0,
+   "island": "WATER_HOTSPOT"
+  },
+  {
+   "name": "Snapping Turtle",
+   "message": "A Snapping Turtle is coming your way, and it's ANGRY!",
+   "rarity": "RARE",
+   "xp": 500,
+   "island": "WATER_HOTSPOT"
+  },
+  {
+   "name": "Wiki Tiki",
+   "message": "The water bubbles and froths. A massive form emerges- you have disturbed the Wiki Tiki! You shall pay the price.",
+   "rarity": "MYTHIC",
+   "xp": 7500,
+   "island": "WATER_HOTSPOT"
+  },
+  {
+   "name": "Frosty",
+   "message": "It's a snowman! He looks harmless.",
+   "rarity": "COMMON",
+   "xp": 203,
+   "island": "WINTER_ISLAND"
+  },
+  {
+   "name": "Frozen Steve",
+   "message": "Frozen Steve fell into the pond long ago, never to resurface...until now!",
+   "rarity": "COMMON",
+   "xp": 101,
+   "island": "WINTER_ISLAND"
+  },
+  {
+   "name": "Grinch",
+   "message": "The Grinch stole Jerry's Gifts...get them back!",
+   "rarity": "UNCOMMON",
+   "xp": 405,
+   "island": "WINTER_ISLAND"
+  },
+  {
+   "name": "Nutcracker",
+   "message": "You found a forgotten Nutcracker laying beneath the ice.",
+   "rarity": "EPIC",
+   "xp": 950,
+   "island": "WINTER_ISLAND"
+  },
+  {
+   "name": "Reindrake",
+   "message": "A Reindrake forms from the depths.",
+   "rarity": "MYTHIC",
+   "xp": 0,
+   "island": "WINTER_ISLAND"
+  },
+  {
+   "name": "Yeti",
+   "message": "What is this creature!?",
+   "rarity": "LEGENDARY",
+   "xp": 4050,
+   "island": "WINTER_ISLAND"
+  }
+ ]
+}
