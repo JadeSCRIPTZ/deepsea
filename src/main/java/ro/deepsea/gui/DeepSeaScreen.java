@@ -46,10 +46,12 @@ public final class DeepSeaScreen extends Screen {
 
     public DeepSeaScreen() {
         super(Component.literal("DeepSea"));
+        DeepSea.LOGGER.info("DeepSeaScreen constructed");
     }
 
     @Override
     protected void init() {
+        DeepSea.LOGGER.info("DeepSeaScreen.init() width={} height={}", this.width, this.height);
         rowWidgets.clear();
         this.perPage = Math.max(3, (this.height - 118) / 20);
         filterCreatures();
@@ -234,9 +236,14 @@ public final class DeepSeaScreen extends Screen {
         return fallback;
     }
 
+    private int renderedFrames = 0;
+
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+        if (renderedFrames++ < 3) {
+            DeepSea.LOGGER.info("DeepSeaScreen.extractRenderState frame={} mouse={},{}", renderedFrames, mouseX, mouseY);
+        }
 
         int left = this.width / 2 + ROW_LEFT;
 
@@ -261,5 +268,23 @@ public final class DeepSeaScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return false;
+    }
+
+    @Override
+    public void added() {
+        DeepSea.LOGGER.info("DeepSeaScreen.added()");
+        super.added();
+    }
+
+    @Override
+    public void removed() {
+        DeepSea.LOGGER.info("DeepSeaScreen.removed()");
+        super.removed();
+    }
+
+    @Override
+    public void onClose() {
+        DeepSea.LOGGER.info("DeepSeaScreen.onClose()");
+        super.onClose();
     }
 }

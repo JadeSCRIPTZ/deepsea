@@ -132,6 +132,10 @@ Fără mixin-uri.
 
 ## Changelog
 
+### 1.1.1
+- deschiderea GUI-ului este amânată pe tick-ul următor (posibil fix pentru „nu se deschide GUI")
+- log detaliat (added/init/extractRenderState/removed) ca să putem depana rapid dacă mai apare
+
 ### 1.1.0
 - pătratul rămâne până mor toți mobii prinși (inclusiv Double Hook)
 - mod per creatură: `MOB` (până moare) / `TIM` (pe timp)

@@ -71,25 +71,37 @@ public final class DeepSeaCommand {
 
     private static int openGui(FabricClientCommandSource source) {
         source.sendFeedback(Component.literal("§b[DeepSea] §7Deschid GUI..."));
-        try {
-            Minecraft.getInstance().setScreen(new DeepSeaScreen());
-            return 1;
-        } catch (Throwable throwable) {
-            DeepSea.LOGGER.error("Could not open the DeepSea GUI", throwable);
-            source.sendError(Component.literal("§c[DeepSea] Eroare la GUI: " + throwable));
-            return 0;
-        }
+        Minecraft minecraft = Minecraft.getInstance();
+        // Deschidem pe tick-ul urmator al render thread-ului, ca sa nu fim calcati in picioare
+        // de inchiderea ecranului de chat (un alt mod poate reordona fluxul).
+        minecraft.execute(() -> {
+            try {
+                DeepSeaScreen screen = new DeepSeaScreen();
+                minecraft.setScreen(screen);
+                DeepSea.LOGGER.info("DeepSea GUI open requested, current screen={}", minecraft.screen);
+            } catch (Throwable throwable) {
+                DeepSea.LOGGER.error("Could not open the DeepSea GUI", throwable);
+                if (minecraft.player != null) {
+                    minecraft.player.sendSystemMessage(Component.literal("§c[DeepSea] Eroare la GUI: " + throwable));
+                }
+            }
+        });
+        return 1;
     }
 
     private static int openEdit(FabricClientCommandSource source) {
-        try {
-            Minecraft.getInstance().setScreen(new HudEditScreen(null));
-            return 1;
-        } catch (Throwable throwable) {
-            DeepSea.LOGGER.error("Could not open the HUD editor", throwable);
-            source.sendError(Component.literal("§c[DeepSea] Eroare la editorul HUD: " + throwable));
-            return 0;
-        }
+        Minecraft minecraft = Minecraft.getInstance();
+        minecraft.execute(() -> {
+            try {
+                minecraft.setScreen(new HudEditScreen(null));
+            } catch (Throwable throwable) {
+                DeepSea.LOGGER.error("Could not open the HUD editor", throwable);
+                if (minecraft.player != null) {
+                    minecraft.player.sendSystemMessage(Component.literal("§c[DeepSea] Eroare la editorul HUD: " + throwable));
+                }
+            }
+        });
+        return 1;
     }
 
     private static int toggle(FabricClientCommandSource source, String name) {
