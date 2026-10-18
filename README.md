@@ -21,7 +21,7 @@ Făcut pentru **Minecraft 26.1.2** (Fabric, Java 25).
 
 1. Fabric Loader pentru Minecraft **26.1.2** + **Java 25**.
 2. În `mods/` pune:
-   - `deepsea-1.1.0.jar`
+   - ultimul `deepsea-*.jar` din [Releases](https://github.com/JadeSCRIPTZ/deepsea/releases)
    - [Fabric API](https://modrinth.com/mod/fabric-api) pentru 26.1.2
 3. Pornește jocul. În chat ar trebui să vezi `[DeepSea] activat`.
 4. Scrie `/dpsea`.

@@ -48,9 +48,6 @@ public final class HudEditScreen extends Screen {
         DeepSeaConfig config = DeepSea.config();
         int size = config.boxSize;
 
-        // fundal intunecat usor, ca HUD-ul sa fie vizibil
-        graphics.fill(0, 0, this.width, this.height, 0x50000000);
-
         AlertHud.drawSquare(graphics, config.x, config.y, size, 0xFFFFAA00);
 
         if (config.showLabel) {

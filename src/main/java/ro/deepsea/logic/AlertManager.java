@@ -58,12 +58,20 @@ public final class AlertManager {
     public static void onCatch(SeaCreature creature, CreatureSettings settings, int expected) {
         long now = System.currentTimeMillis();
 
-        // aceeasi creatura prinsa din nou cat timp inca traieste: adaugam la alerta existenta
-        for (ActiveAlert alert : ACTIVE) {
-            if (alert.creature.name().equals(creature.name()) && alert.allDeadAt < 0 && alert.visible(now)) {
+        for (Iterator<ActiveAlert> iterator = ACTIVE.iterator(); iterator.hasNext(); ) {
+            ActiveAlert alert = iterator.next();
+            if (!alert.creature.name().equals(creature.name())) {
+                continue;
+            }
+            // MOB: aceeasi creatura prinsa din nou cat timp inca traieste -> adaugam la alerta existenta
+            if (alert.untilDead && alert.allDeadAt < 0 && alert.visible(now)) {
                 alert.expected += expected;
                 alert.findDeadline = now + 4000L;
                 return;
+            }
+            // TIM: o captura noua reporneste cronometrul (altfel alerta veche expira prea devreme)
+            if (!alert.untilDead) {
+                iterator.remove();
             }
         }
 
@@ -86,7 +94,12 @@ public final class AlertManager {
 
     public static void tick() {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.level == null || minecraft.player == null) {
+        if (minecraft.level == null) {
+            // deconectat / in meniu: nu lasam alerte vechi sa apara la reconectare
+            ACTIVE.clear();
+            return;
+        }
+        if (minecraft.player == null) {
             return;
         }
         if (ACTIVE.isEmpty()) {
