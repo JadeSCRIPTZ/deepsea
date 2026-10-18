@@ -13,11 +13,29 @@ public class CreatureSettings {
     /** Culoarea patratului, ARGB (Alpha in byte-ul cel mai semnificativ). */
     public int color = 0xFFFFFFFF;
 
-    /** Cat timp ramane patratul pe ecran, in milisecunde. */
-    public int durationMs = 5000;
-
     /** Daca se scrie numele creaturii langa patrat. */
     public boolean showLabel = true;
+
+    /**
+     * UNTIL_DEAD = patratul ramane cat timp creatura (sau creaturile, la double hook) e in viata,
+     * plus {@link #afterDeathMs} dupa ce moare.
+     * TIMED = patratul ramane exact {@link #durationMs}, indiferent de mob.
+     */
+    public String mode = "UNTIL_DEAD";
+
+    /** Durata in modul TIMED. In modul UNTIL_DEAD e folosita doar daca mobul nu e gasit. */
+    public int durationMs = 6000;
+
+    /** Cat timp ramane patratul dupa ce ultimul mob urmarit a murit. */
+    public int afterDeathMs = 1500;
+
+    public boolean isUntilDead() {
+        return !"TIMED".equalsIgnoreCase(mode);
+    }
+
+    public void toggleMode() {
+        mode = isUntilDead() ? "TIMED" : "UNTIL_DEAD";
+    }
 
     public static CreatureSettings defaultsFor(String name) {
         CreatureSettings settings = new CreatureSettings();

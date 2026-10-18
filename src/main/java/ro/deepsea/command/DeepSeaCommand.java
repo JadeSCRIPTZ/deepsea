@@ -2,6 +2,7 @@ package ro.deepsea.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.Minecraft;
@@ -15,7 +16,7 @@ import ro.deepsea.gui.HudEditScreen;
 import ro.deepsea.logic.AlertManager;
 
 /**
- * {@code /dpsea} — deschide GUI-ul; subcomenzi pentru toggle/culoare/test.
+ * {@code /dpsea} — deschide GUI-ul; subcomenzi pentru toggle/culoare/test/debug.
  */
 public final class DeepSeaCommand {
 
@@ -23,14 +24,32 @@ public final class DeepSeaCommand {
     }
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
-        dispatcher.register(ClientCommands.literal("dpsea")
-            .executes(context -> openGui())
+        dispatcher.register(build("dpsea"));
+        dispatcher.register(build("deepsea"));
+    }
+
+    private static LiteralArgumentBuilder<FabricClientCommandSource> build(String name) {
+        return ClientCommands.literal(name)
+            .executes(context -> openGui(context.getSource()))
+            .then(ClientCommands.literal("gui")
+                .executes(context -> openGui(context.getSource())))
             .then(ClientCommands.literal("edit")
-                .executes(context -> openEdit()))
+                .executes(context -> openEdit(context.getSource())))
             .then(ClientCommands.literal("test")
                 .executes(context -> {
                     AlertManager.showTest();
                     context.getSource().sendFeedback(Component.literal("§b[DeepSea] §7Test afisat."));
+                    return 1;
+                }))
+            .then(ClientCommands.literal("debug")
+                .executes(context -> {
+                    FabricClientCommandSource source = context.getSource();
+                    source.sendFeedback(Component.literal(
+                        "§b[DeepSea] §7creaturi: §f" + SeaCreatureDatabase.size()
+                            + " §7| alerte: §f" + AlertManager.visible().size()
+                            + " §7| entitati urmarite: §f" + AlertManager.trackedIds().size()
+                            + " §7| config: §f" + ro.deepsea.config.DeepSeaConfig.file()
+                    ));
                     return 1;
                 }))
             .then(ClientCommands.literal("toggle")
@@ -47,17 +66,30 @@ public final class DeepSeaCommand {
                             StringArgumentType.getString(context, "hex"),
                             StringArgumentType.getString(context, "nume")
                         )))))
-        );
+            ;
     }
 
-    private static int openGui() {
-        Minecraft.getInstance().setScreen(new DeepSeaScreen());
-        return 1;
+    private static int openGui(FabricClientCommandSource source) {
+        source.sendFeedback(Component.literal("§b[DeepSea] §7Deschid GUI..."));
+        try {
+            Minecraft.getInstance().setScreen(new DeepSeaScreen());
+            return 1;
+        } catch (Throwable throwable) {
+            DeepSea.LOGGER.error("Could not open the DeepSea GUI", throwable);
+            source.sendError(Component.literal("§c[DeepSea] Eroare la GUI: " + throwable));
+            return 0;
+        }
     }
 
-    private static int openEdit() {
-        Minecraft.getInstance().setScreen(new HudEditScreen(null));
-        return 1;
+    private static int openEdit(FabricClientCommandSource source) {
+        try {
+            Minecraft.getInstance().setScreen(new HudEditScreen(null));
+            return 1;
+        } catch (Throwable throwable) {
+            DeepSea.LOGGER.error("Could not open the HUD editor", throwable);
+            source.sendError(Component.literal("§c[DeepSea] Eroare la editorul HUD: " + throwable));
+            return 0;
+        }
     }
 
     private static int toggle(FabricClientCommandSource source, String name) {

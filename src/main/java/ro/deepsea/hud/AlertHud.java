@@ -6,12 +6,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import ro.deepsea.DeepSea;
 import ro.deepsea.config.DeepSeaConfig;
+import ro.deepsea.logic.ActiveAlert;
 import ro.deepsea.logic.AlertManager;
 
 import java.util.List;
 
 /**
- * Deseneaza patratele colorate + numele creaturilor, in coltul ales de utilizator.
+ * Deseneaza patratele colorate + numele creaturilor, la pozitia aleasa de utilizator.
  * Poate fi tras cu mouse-ul din {@code /dpsea edit}.
  */
 public final class AlertHud implements HudElement {
@@ -25,7 +26,7 @@ public final class AlertHud implements HudElement {
             return;
         }
 
-        List<AlertManager.Alert> alerts = AlertManager.active();
+        List<ActiveAlert> alerts = AlertManager.visible();
         if (alerts.isEmpty()) {
             return;
         }
@@ -37,17 +38,17 @@ public final class AlertHud implements HudElement {
         int y = config.y;
         int size = Math.max(4, config.boxSize);
 
-        for (AlertManager.Alert alert : alerts) {
-            long remaining = alert.durationMs() - (now - alert.startMs());
+        for (ActiveAlert alert : alerts) {
+            long remaining = alert.expiresAt() - now;
             int alpha = remaining < FADE_MS ? (int) Math.max(0, remaining * 255L / FADE_MS) : 255;
-            int argb = (alpha << 24) | (alert.color() & 0xFFFFFF);
+            int argb = (alpha << 24) | (alert.color & 0xFFFFFF);
 
             drawSquare(graphics, x, y, size, argb);
 
-            if (alert.label()) {
-                int textColor = (Math.max(alpha, 70) << 24) | (alert.color() & 0xFFFFFF);
+            if (alert.label) {
+                int textColor = (Math.max(alpha, 70) << 24) | (alert.color & 0xFFFFFF);
                 int textY = y + (size - 8) / 2;
-                graphics.text(minecraft.font, alert.creature().name(), x + size + 6, textY, textColor, config.textShadow);
+                graphics.text(minecraft.font, alert.creature.name(), x + size + 6, textY, textColor, config.textShadow);
             }
 
             y += size + config.gap;
