@@ -63,6 +63,7 @@ public final class DeepSeaScreen extends Screen {
     private static final int C_ON = 0xFF55FF55;
     private static final int C_HEX_OK = 0xFFE0E0E0;
     private static final int C_HEX_PARTIAL = 0xFFFFAA55;
+    private static final int C_HEX_INVALID = 0xFFFF5555;
 
     /** Categoria aleasa ramane memorata cat timp jocul e deschis. */
     private static CreatureCategory lastCategory = CreatureCategory.ALL;
@@ -136,7 +137,6 @@ public final class DeepSeaScreen extends Screen {
         int hexW = detW - 22 - 40 - 2;
         this.hexBox = new EditBox(this.font, detX + 22, y, hexW, 18, Component.literal("Culoare hex"));
         this.hexBox.setMaxLength(7);
-        this.hexBox.setFilter(text -> text.matches("#?[0-9a-fA-F]{0,6}"));
         this.hexBox.setResponder(this::onHexChanged);
         this.addRenderableWidget(this.hexBox);
         this.addRenderableWidget(Button.builder(Component.literal("Reset"), button -> {
@@ -323,9 +323,17 @@ public final class DeepSeaScreen extends Screen {
             current().color = 0xFF000000 | rgb;
             save();
             hexBox.setTextColor(C_HEX_OK);
-        } else {
+        } else if (isHexPrefix(value)) {
             hexBox.setTextColor(C_HEX_PARTIAL); // inca scrii (sunt necesare 6 cifre)
+        } else {
+            hexBox.setTextColor(C_HEX_INVALID); // caractere care nu sunt cifre hex
         }
+    }
+
+    /** True daca textul (cu sau fara '#') contine doar cifre hex si are cel mult 6 caractere. */
+    private static boolean isHexPrefix(String text) {
+        String t = text.startsWith("#") ? text.substring(1) : text;
+        return t.length() <= 6 && t.matches("[0-9a-fA-F]*");
     }
 
     private void applyColor(int rgb) {
