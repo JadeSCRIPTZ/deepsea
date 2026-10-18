@@ -44,7 +44,7 @@ public final class DeepSeaScreen extends Screen {
     @Override
     protected void init() {
         rowWidgets.clear();
-        perPage = Math.max(3, (this.height - 96) / 20);
+        perPage = Math.max(3, (this.height - 112) / 20);
         filterCreatures();
 
         this.searchBox = new EditBox(this.font, this.width / 2 - 110, 22, 220, 18, Component.literal("Cauta creatura"));
@@ -133,7 +133,7 @@ public final class DeepSeaScreen extends Screen {
         this.filterCreatures();
         int first = this.page * this.perPage;
         int last = Math.min(this.filtered.size(), first + this.perPage);
-        int y = 68;
+        int y = 66;
 
         for (int index = first; index < last; index++) {
             SeaCreature creature = this.filtered.get(index);
@@ -146,7 +146,7 @@ public final class DeepSeaScreen extends Screen {
                     DeepSea.config().save();
                     this.rebuildRows();
                 }
-            ).bounds(this.width / 2 - 150, y, 150, 18).build());
+            ).bounds(this.width / 2 - 152, y, 138, 18).build());
             this.rowWidgets.add(toggle);
 
             Button colorButton = this.addRenderableWidget(Button.builder(
@@ -156,7 +156,7 @@ public final class DeepSeaScreen extends Screen {
                     DeepSea.config().save();
                     this.rebuildRows();
                 }
-            ).bounds(this.width / 2 + 4, y, 72, 18).build());
+            ).bounds(this.width / 2 - 10, y, 70, 18).build());
             this.rowWidgets.add(colorButton);
 
             Button durationButton = this.addRenderableWidget(Button.builder(
@@ -166,7 +166,7 @@ public final class DeepSeaScreen extends Screen {
                     DeepSea.config().save();
                     this.rebuildRows();
                 }
-            ).bounds(this.width / 2 + 80, y, 44, 18).build());
+            ).bounds(this.width / 2 + 64, y, 42, 18).build());
             this.rowWidgets.add(durationButton);
 
             Button labelButton = this.addRenderableWidget(Button.builder(
@@ -176,7 +176,7 @@ public final class DeepSeaScreen extends Screen {
                     DeepSea.config().save();
                     this.rebuildRows();
                 }
-            ).bounds(this.width / 2 + 128, y, 24, 18).build());
+            ).bounds(this.width / 2 + 110, y, 42, 18).build());
             this.rowWidgets.add(labelButton);
 
             y += 20;
